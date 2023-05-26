@@ -1,3 +1,5 @@
+import 'package:advanced_ui/models/book.dart';
+import 'package:advanced_ui/models/trending_book.dart';
 import 'package:advanced_ui/screens/home/component/recent_book.dart';
 import 'package:advanced_ui/themes.dart';
 import 'package:flutter/material.dart';
@@ -161,33 +163,17 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     Widget trendingBook() {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            margin: const EdgeInsets.only(top: 12),
-            height: 160,
-            width: 110,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              image: const DecorationImage(
-                image: AssetImage('assets/images/trending_book1.png'),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Text(
-            "Gut Kawasaki",
-            style: mediumText12.copyWith(color: greyColor),
-          ),
-          Text(
-            "Enchantment",
-            style: semiBoldText14.copyWith(color: blackColor),
-          ),
-        ],
+      return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Row(
+            children: bookLists
+                .asMap()
+                .entries
+                .map((MapEntry map) => TrendingBook(
+                      info: bookLists[map.key],
+                    ))
+                .toList()),
       );
     }
 
@@ -236,9 +222,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: semiBoldText16.copyWith(color: blackColor),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 30),
-              child: trendingBook(),
+            trendingBook(),
+            const SizedBox(
+              height: 30,
             )
           ],
         ));
