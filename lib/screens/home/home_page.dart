@@ -1,10 +1,14 @@
 import 'package:advanced_ui/models/book.dart';
-import 'package:advanced_ui/models/trending_book.dart';
+// import 'package:advanced_ui/screens/home/component/trending_book.dart';
 import 'package:advanced_ui/screens/home/component/recent_book.dart';
 import 'package:advanced_ui/themes.dart';
 import 'package:flutter/material.dart';
 
+import 'component/trending_book.dart';
+
 class MyHomePage extends StatefulWidget {
+  static const nameRoute = '/homePage';
+
   const MyHomePage({super.key});
 
   @override
